@@ -2,20 +2,20 @@ package com.h2.zzimkong.common
 
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
+import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import javax.persistence.*
 
 @MappedSuperclass
 abstract class EntityBase() {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
+    lateinit var id: String
 
     @CreationTimestamp
-    @Column(name = "created_date", updatable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     lateinit var createdDate: LocalDateTime
 
     @UpdateTimestamp
-    @Column(name = "updated_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     lateinit var updatedDate: LocalDateTime
 }

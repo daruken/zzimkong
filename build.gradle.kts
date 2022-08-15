@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.backend.common.push
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     val kotlinVersion = "1.7.10"
     id("com.graphql_java_generator.graphql-gradle-plugin") version "1.18.7"
@@ -27,19 +30,27 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.7")
-    implementation("com.graphql-java:graphql-java-extended-scalars:18.1")
-    implementation("com.querydsl:querydsl-jpa:5.0.0")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.projectlombok:lombok:1.18.24")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    /* QUERYDSL */
+    implementation("com.querydsl:querydsl-jpa:5.0.0")
+
+    /* GRAPHQL */
+    implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.7")
+    implementation("com.graphql-java:graphql-java-extended-scalars:18.1")
+
+    /* KOTLIN */
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    /* TEST */
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework:spring-webflux")
     testImplementation("org.springframework.graphql:spring-graphql-test")
@@ -51,6 +62,13 @@ dependencies {
     kapt("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
 }
 
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "17"
+    }
+}
+
 idea {
     module {
         val kaptMain = file("build/generated/source/kapt/main")
@@ -59,13 +77,37 @@ idea {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+generatePojoConf {
+    packageName = "$group.zzimkong.graphql"
+    setSchemaFileFolder("$rootDir/src/main/resources/graphql")
+    mode = com.graphql_java_generator.plugin.conf.PluginMode.server
+
+    customScalars.push(
+        com.graphql_java_generator.plugin.conf.CustomScalarDefinition(
+            "Long",
+            "java.lang.Long",
+            null,
+            "graphql.scalars.ExtendedScalars.GraphQLLong",
+            null
+        )
+    )
+}
+
+sourceSets {
+    named("main") {
+        java.srcDirs("/build/generated/sources/graphqlGradlePlugin")
     }
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks {
+    jar {
+        enabled = false
+    }
+    compileKotlin {
+        dependsOn("generatePojo")
+    }
 }

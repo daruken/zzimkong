@@ -1,0 +1,38 @@
+scalar Long
+
+interface Collection {
+    id: String
+    createdDate: String
+    updatedDate: String
+}
+
+input SortInput {
+    property: String,
+    isDescending: Boolean
+}
+
+input SearchInput {
+    by: String
+    operator: String
+    type: String
+    value: [String]
+}
+
+input PageInput {
+    pageNumber: Long
+    pageSize: Long
+    sort: [SortInput]
+    search: [SearchInput]
+}
+
+interface PageResponse {
+    total: Long!
+}
+
+type Query {
+    collectionGet: String
+}
+
+type Mutation {
+    collectionUpdate: String
+}

@@ -1,0 +1,26 @@
+type MemberCollection implements Collection {
+    id: String
+    name: String
+    password: String
+    createdDate: String
+    updatedDate: String
+}
+
+input MemberInput {
+    name: String
+    password: String
+}
+
+type MemberPagination implements PageResponse {
+    members: [MemberCollection]
+    total: Long!
+}
+
+extend type Query {
+    findMembers: [MemberCollection]
+}
+
+extend type Mutation {
+    createMember(member: MemberInput): MemberCollection
+    deleteMember(memberId: String): Boolean
+}
