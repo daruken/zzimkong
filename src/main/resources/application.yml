@@ -2,19 +2,16 @@ server:
   port: 8080
 
 spring:
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: zzimkong
-      authentication-database: admin
-      username: root
-      password: P@ssw0rd
-      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
+  datasource:
+    url: jdbc:mysql://localhost:3306/zzimkong?serverTimezone=UTC&characterEncoding=UTF-8
+    username: zzimkong
+    password: khjjhr0330
+    driver-class-name: com.mysql.cj.jdbc.Driver
   graphql:
     graphiql:
       enabled: true
   jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
     show-sql: true

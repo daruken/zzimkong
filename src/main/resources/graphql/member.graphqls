@@ -1,4 +1,6 @@
-type MemberCollection implements Collection {
+scalar Long
+
+type Member {
     id: String
     name: String
     password: String
@@ -11,16 +13,11 @@ input MemberInput {
     password: String
 }
 
-type MemberPagination implements PageResponse {
-    members: [MemberCollection]
-    total: Long!
+type Query {
+    findMembers(limit: Long, offset: Long): [Member]
 }
 
-extend type Query {
-    findMembers: [MemberCollection]
-}
-
-extend type Mutation {
-    createMember(member: MemberInput): MemberCollection
+type Mutation {
+    createMember(member: MemberInput): Member
     deleteMember(memberId: String): Boolean
 }

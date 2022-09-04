@@ -1,8 +1,8 @@
 package com.h2.zzimkong.member.domain
 
-import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MemberRepository : MongoRepository<Member, Long> {
+interface MemberRepository : JpaRepository<Member, Long>, CustomMemberRepository{
 }
