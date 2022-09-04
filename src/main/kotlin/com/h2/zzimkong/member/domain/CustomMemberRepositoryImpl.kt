@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 
 class CustomMemberRepositoryImpl : QuerydslRepositorySupport(Member::class.java), CustomMemberRepository {
-    override fun findMembers(limit: Long, offset: Long): List<MemberResponse> {
+    override suspend fun findMembers(limit: Long, offset: Long): List<MemberResponse> {
         return from(member)
             .limit(limit)
             .offset(offset)
