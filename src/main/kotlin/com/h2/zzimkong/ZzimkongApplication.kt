@@ -2,10 +2,10 @@ package com.h2.zzimkong
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
+@EnableJpaRepositories(basePackages = ["com.h2.zzimkong"])
 @SpringBootApplication
-@EnableMongoRepositories
 class ZzimkongApplication
 
 fun main(args: Array<String>) {
