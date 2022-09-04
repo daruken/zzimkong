@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional
 class MemberQueryService(
     private val memberRepository: MemberRepository
 ) {
-
     suspend fun selectMembers(limit: Long, offset: Long): List<MemberResponse> {
         return memberRepository.findMembers(limit, offset)
     }
