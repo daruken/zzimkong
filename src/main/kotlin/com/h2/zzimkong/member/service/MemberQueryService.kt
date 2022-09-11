@@ -1,7 +1,8 @@
 package com.h2.zzimkong.member.service
 
+import com.h2.zzimkong.member.domain.Member
 import com.h2.zzimkong.member.domain.MemberRepository
-import com.h2.zzimkong.member.domain.dto.MemberResponse
+import kotlinx.coroutines.flow.Flow
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 class MemberQueryService(
     private val memberRepository: MemberRepository
 ) {
-    suspend fun selectMembers(limit: Long, offset: Long): List<MemberResponse> {
-        return memberRepository.findMembers(limit, offset)
+    suspend fun selectMembers(limit: Long, offset: Long): Flow<Member> {
+        return memberRepository.findAll()
     }
 }
