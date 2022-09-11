@@ -34,6 +34,11 @@ dependencies {
     /* QUERYDSL */
     implementation("com.querydsl:querydsl-jpa:5.0.0")
 
+    /* R2DBC */
+    implementation("dev.miku:r2dbc-mysql:0.8.2.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    runtimeOnly("dev.miku:r2dbc-mysql")
+
     /* GRAPHQL */
     implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.7")
     implementation("com.graphql-java:graphql-java-extended-scalars:18.1")
@@ -43,6 +48,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.6.4")
     runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4")
 

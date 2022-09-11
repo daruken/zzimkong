@@ -1,15 +1,17 @@
 package com.h2.zzimkong.member.domain
 
 import com.h2.zzimkong.common.EntityBase
+import org.springframework.data.relational.core.mapping.Table
 import javax.persistence.Column
 import javax.persistence.Entity
 
+@Table("member")
 @Entity
-class Member constructor(
-    @Column(nullable = false)
-    private val name: String,
-    @Column(nullable = false)
-    private val password: String,
-    @Column(nullable = false)
-    private val email: String
+class Member(
+    @Column(name = "name", nullable = false)
+    val name: String,
+    @Column(name = "password", nullable = false)
+    val password: String,
+    @Column(name = "email", nullable = false)
+    val email: String
 ) : EntityBase()
