@@ -18,6 +18,6 @@ class MemberController(
     suspend fun findMembers(@Argument limit: Long, @Argument offset: Long): List<MemberResponse> {
         return withContext(Dispatchers.IO) {
             memberQueryService.selectMembers(limit, offset)
-        }.map { MemberResponse(it.name) }.toList()
+        }.map { MemberResponse(it.name, it.email) }.toList()
     }
 }
