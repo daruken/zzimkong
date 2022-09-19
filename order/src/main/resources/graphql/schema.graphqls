@@ -1,0 +1,13 @@
+scalar Long
+
+type Query {
+    findYogurts: [Yogurt]
+    findOrders: [Order]
+}
+
+type Mutation {
+    createYogurt(yogurt: YogurtInput): Yogurt
+    destroyYogurt(id: Long): Boolean
+    createOrder(order: OrderInput): Order
+    destroyOrder(id: Long): Boolean
+}
