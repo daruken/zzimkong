@@ -6,17 +6,32 @@ plugins {
     id("com.graphql_java_generator.graphql-gradle-plugin") version "1.18.7"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
     id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.12.RELEASE"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
     kotlin("jvm") version kotlinVersion
-    kotlin("kapt") version kotlinVersion
-    kotlin("plugin.jpa") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
-    idea
+    kotlin("plugin.serialization") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
 }
 
-group = "com.h2"
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+}
+
+group = "com.h2.zzimkong"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
 
 repositories {
     mavenCentral()
@@ -58,11 +73,6 @@ dependencies {
     testImplementation("org.springframework:spring-webflux")
     testImplementation("org.springframework.graphql:spring-graphql-test")
     testImplementation("org.springframework.security:spring-security-test")
-
-    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
-    kapt("com.github.pozo:mapstruct-kotlin-processor:1.4.0.0")
-    kapt("org.mapstruct:mapstruct-processor:1.5.2.Final")
-    kapt("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
 }
 
 tasks.withType<KotlinCompile> {
@@ -72,16 +82,12 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-idea {
-    module {
-        val kaptMain = file("build/generated/source/kapt/main")
-        sourceDirs.add(kaptMain)
-        generatedSourceDirs.add(kaptMain)
-    }
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 generatePojoConf {
-    packageName = "$group.zzimkong.graphql"
+    packageName = "$group.zzimkong.order.graphql"
     setSchemaFileFolder("$rootDir/src/main/resources/graphql")
     mode = com.graphql_java_generator.plugin.conf.PluginMode.server
 
@@ -100,10 +106,6 @@ sourceSets {
     named("main") {
         java.srcDirs("/build/generated/sources/graphqlGradlePlugin")
     }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }
 
 tasks {

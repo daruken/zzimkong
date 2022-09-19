@@ -1,0 +1,12 @@
+type Yogurt {
+    id: Long
+    name: String
+    type: String
+    price: Long
+}
+
+input YogurtInput {
+    name: String
+    type: String
+    price: Long
+}

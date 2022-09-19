@@ -1,0 +1,13 @@
+type Order {
+    id: Long
+    memberId: Long
+    yogurtId: Long
+    type: String
+    createdDate: String
+}
+
+input OrderInput {
+    memberId: Long
+    yogurtId: Long
+    type: String
+}

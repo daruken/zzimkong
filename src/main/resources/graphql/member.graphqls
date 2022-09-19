@@ -1,7 +1,7 @@
 scalar Long
 
 type Member {
-    id: String
+    id: Long
     name: String
     password: String
     email: String

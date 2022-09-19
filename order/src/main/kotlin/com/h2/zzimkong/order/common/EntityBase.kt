@@ -1,4 +1,4 @@
-package com.h2.zzimkong.common
+package com.h2.zzimkong.order.common
 
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass
 abstract class EntityBase() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0
+    var id: Long? = 0
 
     @CreationTimestamp
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
