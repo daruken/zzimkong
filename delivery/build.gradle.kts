@@ -1,26 +1,10 @@
-import org.jetbrains.kotlin.backend.common.push
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.7.10"
-    id("com.graphql_java_generator.graphql-gradle-plugin") version "1.18.7"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
-    id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.13.RELEASE"
-    kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
-    kotlin("plugin.serialization") version kotlinVersion
-    kotlin("plugin.jpa") version kotlinVersion
-}
-
-allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("javax.persistence.Embeddable")
-}
-
-noArg {
-    annotation("javax.persistence.Entity")
+    id("org.springframework.boot") version "2.7.4"
+    id("io.spring.dependency-management") version "1.0.14.RELEASE"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
 }
 
 group = "com.h2.zzimkong"
@@ -42,12 +26,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.projectlombok:lombok:1.18.24")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("mysql:mysql-connector-java")
-
-    /* QUERYDSL */
-    implementation("com.querydsl:querydsl-jpa:5.0.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     /* R2DBC */
     implementation("dev.miku:r2dbc-mysql:0.8.2.RELEASE")
@@ -71,6 +52,11 @@ dependencies {
     /* KAFKA */
     implementation("org.springframework.kafka:spring-kafka")
 
+    compileOnly("org.projectlombok:lombok")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    runtimeOnly("mysql:mysql-connector-java")
+    annotationProcessor("org.projectlombok:lombok")
+
     /* TEST */
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework:spring-webflux")
@@ -87,35 +73,4 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-generatePojoConf {
-    packageName = "$group.zzimkong.order.graphql"
-    setSchemaFileFolder("$rootDir/src/main/resources/graphql")
-    mode = com.graphql_java_generator.plugin.conf.PluginMode.server
-
-    customScalars.push(
-        com.graphql_java_generator.plugin.conf.CustomScalarDefinition(
-            "Long",
-            "java.lang.Long",
-            null,
-            "graphql.scalars.ExtendedScalars.GraphQLLong",
-            null
-        )
-    )
-}
-
-sourceSets {
-    named("main") {
-        java.srcDirs("/build/generated/sources/graphqlGradlePlugin")
-    }
-}
-
-tasks {
-    jar {
-        enabled = false
-    }
-    compileKotlin {
-        dependsOn("generatePojo")
-    }
 }
