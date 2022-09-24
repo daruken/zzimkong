@@ -4,8 +4,8 @@ server:
 spring:
   r2dbc:
     url: r2dbc:pool:mysql://localhost:3306/zzimkong?useUnicode=true&characterEncoding=utf8
-    username: zzimkong
-    password: khjjhr0330
+    username:
+    password:
   graphql:
     graphiql:
       enabled: true
@@ -19,3 +19,8 @@ logging:
     org:
       springframework:
         r2dbc: DEBUG
+
+kafka:
+  host: localhost:9092
+  topic: zzimkong
+  groupId: 1234
