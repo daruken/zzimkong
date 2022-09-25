@@ -2,7 +2,7 @@ scalar Long
 
 type Query {
     findYogurts: [Yogurt]
-    findOrders: [Order]
+    findOrders: [OrderResponse]
 }
 
 type Mutation {

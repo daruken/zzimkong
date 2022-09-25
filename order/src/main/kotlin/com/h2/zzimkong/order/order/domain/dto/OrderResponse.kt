@@ -1,10 +1,14 @@
 package com.h2.zzimkong.order.order.domain.dto
 
-import com.h2.zzimkong.order.order.domain.type.OrderType
+import java.time.LocalDateTime
 
 data class OrderResponse(
     val id: Long,
-    val memberId: Long,
-    val yogurtId: Long,
-    val type: OrderType
+    val memberName: String,
+    val memberEmail: String? = null,
+    val yogurtName: String? = null,
+    val yogurtType: String? = null,
+    val yogurtPrice: Long? = null,
+    val type: String,
+    val createdDate: LocalDateTime
 )

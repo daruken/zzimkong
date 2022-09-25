@@ -6,8 +6,6 @@ import com.h2.zzimkong.order.order.domain.dto.OrderResponse
 import com.h2.zzimkong.order.order.service.OrderCommandService
 import com.h2.zzimkong.order.order.service.OrderQueryService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.withContext
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -20,17 +18,10 @@ class OrderController(
     private val orderQueryService: OrderQueryService
 ) {
     @QueryMapping("findOrders")
-    suspend fun findOrders(): List<OrderResponse> {
+    suspend fun findOrders(): List<OrderResponse>? {
         return withContext(Dispatchers.IO) {
-            orderQueryService.selectOrders()
-        }.map {
-            OrderResponse(
-                id = it.id!!,
-                memberId = it.memberId,
-                yogurtId = it.yogurtId,
-                type = it.type
-            )
-        }.toList()
+            orderQueryService.selectOrders().collectList().block()?.toList()
+        }
     }
 
     @MutationMapping("createOrder")
