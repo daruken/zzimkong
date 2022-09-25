@@ -11,3 +11,19 @@ input OrderInput {
     yogurtId: Long
     type: String
 }
+
+type OrderResponse {
+    id: Long
+    memberName: String
+    memberEmail: String
+    yogurtName: String
+    yogurtType: String
+    yogurtPrice: Long
+    type: String
+    createdDate: String
+}
+
+type MemberResponse {
+    name: String,
+    email: String
+}
