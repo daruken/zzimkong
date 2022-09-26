@@ -46,6 +46,11 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("mysql:mysql-connector-java")
 
+    /* JSON */
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
     /* QUERYDSL */
     implementation("com.querydsl:querydsl-jpa:5.0.0")
 

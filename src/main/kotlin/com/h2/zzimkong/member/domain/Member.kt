@@ -1,9 +1,7 @@
 package com.h2.zzimkong.member.domain
 
-import com.h2.zzimkong.common.EntityBase
 import org.springframework.data.relational.core.mapping.Table
-import javax.persistence.Column
-import javax.persistence.Entity
+import javax.persistence.*
 
 @Table("member")
 @Entity
@@ -14,4 +12,8 @@ class Member(
     val password: String,
     @Column(name = "email", nullable = false)
     val email: String
-) : EntityBase()
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long? = null
+}
