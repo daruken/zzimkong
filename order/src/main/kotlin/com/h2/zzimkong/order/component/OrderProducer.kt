@@ -1,5 +1,6 @@
 package com.h2.zzimkong.order.component
 
+import org.json.simple.JSONObject
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.kafka.core.KafkaProducerException
 import org.springframework.kafka.core.KafkaSendCallback
@@ -15,6 +16,15 @@ class OrderProducer(
     lateinit var topic: String
 
     fun sendMessage(message: String) {
+        kafkaTemplate.send(topic, message).addCallback(listenableFutureCallback(message))
+    }
+
+    fun sendEventMessage(eventName: String, obj: Any) {
+        val jsonObject = JSONObject()
+        jsonObject["eventName"] = eventName
+        jsonObject["data"] = obj
+        val message = jsonObject.toString()
+
         kafkaTemplate.send(topic, message).addCallback(listenableFutureCallback(message))
     }
 
