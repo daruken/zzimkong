@@ -1,4 +1,7 @@
 # zzimkong
+요거트 서비스
+- 주문 및 배송 서비스
+
 # Table script(MySQL)
 CREATE TABLE `member` (
   `id` bigint(20) NOT NULL,
