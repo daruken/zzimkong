@@ -2,23 +2,18 @@ server:
     port: 8082
 
 spring:
-    r2dbc:
-        url: r2dbc:pool:mysql://localhost:3306/zzimkong?useUnicode=true&characterEncoding=utf8
-        username:
-        password:
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            authentication-database: admin
+            username: zzimkong
+            password:
+            database: zzimkong
+
     graphql:
         graphiql:
             enabled: true
-    jpa:
-        database: mysql
-        hibernate:
-            ddl-auto: update
-        show-sql: true
-logging:
-    level:
-        org:
-            springframework:
-                r2dbc: DEBUG
 
 kafka:
     host: localhost:9092

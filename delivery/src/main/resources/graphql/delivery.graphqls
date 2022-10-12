@@ -1,0 +1,9 @@
+type DeliveryCollection implements Collection {
+  id: String
+  memberName: String
+  memberEmail: String
+  yogurtName: String
+  yogurtType: String
+  yogurtPrice: Long
+  type: String
+}

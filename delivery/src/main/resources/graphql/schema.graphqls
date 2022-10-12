@@ -1,0 +1,13 @@
+scalar Long
+
+interface Collection {
+    id: String
+}
+
+type Query {
+    findDeliveries: [DeliveryCollection]
+}
+
+type Mutation {
+    createDelivery: String
+}
