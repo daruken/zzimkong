@@ -5,8 +5,8 @@ plugins {
     val kotlinVersion = "1.7.20"
     id("com.graphql_java_generator.graphql-gradle-plugin") version "1.18.7"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
-    id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    id("org.springframework.boot") version "2.7.4"
+    id("io.spring.dependency-management") version "1.0.14.RELEASE"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
