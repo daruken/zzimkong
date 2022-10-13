@@ -2,11 +2,11 @@ import org.jetbrains.kotlin.backend.common.push
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    val kotlinVersion = "1.7.10"
+    val kotlinVersion = "1.7.20"
     id("com.graphql_java_generator.graphql-gradle-plugin") version "1.18.7"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
-    id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.12.RELEASE"
+    id("org.springframework.boot") version "2.7.4"
+    id("io.spring.dependency-management") version "1.0.14.RELEASE"
     kotlin("jvm") version kotlinVersion
     kotlin("kapt") version kotlinVersion
     kotlin("plugin.jpa") version kotlinVersion
@@ -41,7 +41,7 @@ dependencies {
 
     /* GRAPHQL */
     implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.7")
-    implementation("com.graphql-java:graphql-java-extended-scalars:18.1")
+    implementation("com.graphql-java:graphql-java-extended-scalars:19.0")
 
     /* KOTLIN */
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
