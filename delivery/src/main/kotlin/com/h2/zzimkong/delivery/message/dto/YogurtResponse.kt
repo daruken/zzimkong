@@ -1,12 +1,11 @@
-package com.h2.zzimkong.order.yogurt.domain.dto
+package com.h2.zzimkong.delivery.message.dto
 
-import com.h2.zzimkong.order.yogurt.domain.type.YogurtType
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class YogurtResponse(
     val id: Long,
     val name: String,
-    val type: YogurtType,
+    val type: String,
     val price: Long
 )

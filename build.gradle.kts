@@ -9,6 +9,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     kotlin("jvm") version kotlinVersion
     kotlin("kapt") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
     kotlin("plugin.jpa") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     idea
@@ -52,6 +53,14 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.6.4")
     runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4")
+
+    /* JSON */
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+    /* KAFKA */
+    implementation("org.springframework.kafka:spring-kafka")
 
     /* TEST */
     testImplementation("org.springframework.boot:spring-boot-starter-test")

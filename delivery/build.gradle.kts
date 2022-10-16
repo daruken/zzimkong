@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
 }
 
 group = "com.h2.zzimkong"
@@ -31,6 +32,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    /* JSON */
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
     /* GRAPHQL */
     implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.7")
     implementation("com.graphql-java:graphql-java-extended-scalars:19.0")
@@ -43,6 +49,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
     runtimeOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4")
 
     /* KAFKA */

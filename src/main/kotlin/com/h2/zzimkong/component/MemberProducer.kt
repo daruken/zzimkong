@@ -1,7 +1,6 @@
-package com.h2.zzimkong.order.component
+package com.h2.zzimkong.component
 
 import org.json.simple.JSONObject
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.kafka.core.KafkaProducerException
 import org.springframework.kafka.core.KafkaSendCallback
 import org.springframework.kafka.core.KafkaTemplate
@@ -9,13 +8,10 @@ import org.springframework.kafka.support.SendResult
 import org.springframework.stereotype.Component
 
 @Component
-class OrderProducer(
+class MemberProducer(
     val kafkaTemplate: KafkaTemplate<String, String>
 ) {
-    @Value("\${kafka.topic}")
-    lateinit var topic: String
-
-    fun sendEventMessage(eventName: String, obj: Any) {
+    fun sendEventMessage(topic: String, eventName: String, obj: Any) {
         val jsonObject = JSONObject()
         jsonObject["eventName"] = eventName
         jsonObject["data"] = obj
