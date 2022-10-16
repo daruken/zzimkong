@@ -14,4 +14,8 @@ class MemberQueryService(
     suspend fun selectMembers(limit: Long, offset: Long): Flow<Member> {
         return memberRepository.findAll()
     }
+
+    suspend fun selectMemberById(memberId: Long): Member? {
+        return memberRepository.findById(memberId)
+    }
 }

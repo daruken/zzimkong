@@ -22,5 +22,5 @@ logging:
 
 kafka:
   host: localhost:9092
-  topic: zzimkong
+  topic: delivery
   groupId: 1234

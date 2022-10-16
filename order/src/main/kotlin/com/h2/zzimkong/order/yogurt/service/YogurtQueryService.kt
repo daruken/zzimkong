@@ -14,4 +14,8 @@ class YogurtQueryService(
     suspend fun selectYogurts(): Flow<Yogurt> {
         return yogurtRepository.findAll()
     }
+
+    suspend fun selectYogurtById(yogurtId: Long): Yogurt? {
+        return yogurtRepository.findById(yogurtId)
+    }
 }

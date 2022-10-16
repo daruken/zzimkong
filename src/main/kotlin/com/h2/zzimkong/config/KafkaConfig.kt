@@ -1,4 +1,4 @@
-package com.h2.zzimkong.order.config
+package com.h2.zzimkong.config
 
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
