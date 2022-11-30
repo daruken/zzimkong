@@ -41,8 +41,8 @@ dependencies {
     runtimeOnly("dev.miku:r2dbc-mysql")
 
     /* GRAPHQL */
-    implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.7")
-    implementation("com.graphql-java:graphql-java-extended-scalars:19.0")
+    implementation("com.graphql-java-generator:graphql-java-common-runtime:1.18.8")
+    implementation("com.graphql-java:graphql-java-extended-scalars:19.1")
 
     /* KOTLIN */
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -56,11 +56,16 @@ dependencies {
 
     /* JSON */
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
     /* KAFKA */
     implementation("org.springframework.kafka:spring-kafka")
+
+    /* Mapstruct */
+    implementation("org.mapstruct:mapstruct:1.4.2.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
+    kaptTest("org.mapstruct:mapstruct-processor:1.4.2.Final")
 
     /* TEST */
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -70,7 +75,6 @@ dependencies {
 
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
     kapt("com.github.pozo:mapstruct-kotlin-processor:1.4.0.0")
-    kapt("org.mapstruct:mapstruct-processor:1.5.2.Final")
     kapt("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
 }
 
